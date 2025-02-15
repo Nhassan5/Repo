@@ -1,5 +1,5 @@
 /*
- * Class: CMSC203 
+ *  Class: CMSC203 
  * Instructor: Grigoriy Grinberg
  * Description: ESP Game
  * Due: 02/10/2025
@@ -12,18 +12,20 @@
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Random;
 import java.util.Scanner;
 import java.io.File;
 
+
 public class ESPGame {
     public static void main(String[] args) throws IOException {
+    	
         // Scanner for user input
         Scanner input = new Scanner(System.in);
 
         // Initial introduction to the game
         System.out.println("CMCC200 Assignment1: Test your ESP skills!");
         System.out.println("Welcome to ESP - extrasensory perception!");
+        
         int points = 0; // Variable to keep track of the points scored by the user
 
         // Main game loop to keep playing until user chooses to exit
@@ -37,8 +39,13 @@ public class ESPGame {
             System.out.println("4. Exit");
             System.out.print("Enter the option: ");
             
-            // Read user input for menu option
-            final int option = input.nextInt();
+            int option;
+            if (input.hasNextInt()) {
+                option = input.nextInt();
+            } else {
+            	final String temp = input.next();
+                option = 5;
+            }
             
             // If the user selects an option other than 4 (Exit)
             if(option < 4){
@@ -58,10 +65,10 @@ public class ESPGame {
                 }
                 
                 // Randomly pick three colors to test the user on
-                Random random = new Random();
-                final int randomNumber1 = random.nextInt(display) + 1;
-                final int randomNumber2 = random.nextInt(display) + 1;                
-                final int randomNumber3 = random.nextInt(display) + 1;
+                
+                final int randomNumber1 = (int) (Math.random() * (display - 1 + 1)) + 1 ;
+                final int randomNumber2 = (int) (Math.random() * (display - 1 + 1)) + 1 ;                
+                final int randomNumber3 = (int) (Math.random() * (display - 1 + 1)) + 1 ;
                 String color1 = "";
                 String color2 = "";
                 String color3 = "";
@@ -70,8 +77,8 @@ public class ESPGame {
                 File file = new File(fileName);
                 System.out.print(file.getAbsolutePath());
                 Scanner fileReader = new Scanner(file);
-                int counter = 1;
                 
+                int counter = 1;
                 // Display the colors from the file
                 while (display > 0) {
                     final String currentColor = fileReader.nextLine().trim();
@@ -149,6 +156,7 @@ public class ESPGame {
             } else {
                 System.out.println("Invalid choice. Please try again.");
             }
+            
         }
 
         // After exiting the game, gather additional user details for the report
