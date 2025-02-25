@@ -1,0 +1,32 @@
+package Movie;
+import java.util.Scanner;
+
+
+public class MovieDriver {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while(true) {
+        	Movie movie = new Movie ();
+        
+        System.out.println("Enter the name of a movie");
+        String title = sc.nextLine();
+        movie.setTitle(title);
+        
+        System.out.println("Enter the rating of the movie");
+        String rating = sc.nextLine();
+        movie.setRating(rating);
+
+        System.out.println("Enter the number of tickets sold for this movie");
+        int tickets = sc.nextInt();
+        sc.nextLine();
+        movie.setSoldTickets(tickets);
+        
+        System.out.println(movie.toString());
+        System.out.println("Do you want to enter another? (y or n)");
+        String cont = sc.nextLine();
+        if (cont.equals("n")|| cont.equals("N")) { break;}
+        	
+        }
+        System.out.println("Goodbye");
+    }
+}
